@@ -1,0 +1,20 @@
+{
+  "name": "Leaflet.AffineOverlay",
+  "version": "0.0.0",
+  "authors": [
+    "Tuomnas Vähänen <tuomas.vahanen@gmail.com>"
+  ],
+  "description": "ImageOverlay with transform support",
+  "main": "leaflet_affine_overlay.js",
+  "keywords": [
+    "leaflet"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
