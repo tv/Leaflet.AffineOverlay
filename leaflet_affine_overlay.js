@@ -64,8 +64,7 @@ if (typeof(L) !== 'undefined') {
         return val.toFixed(12);
       });
 
-      var elm = this._image;
-      elm.css({
+      var styles = {
         '-webkit-transform'        : 'matrix(' + matrix.join(',') + ')',
         '-webkit-transform-origin' : origin.x + 'px ' + origin.y + 'px ',
         '-moz-transform'           : 'matrix(' + matrix.join(',') + ')',
@@ -76,6 +75,11 @@ if (typeof(L) !== 'undefined') {
         '-ms-transform-origin'     : origin.x + 'px ' + origin.y + 'px ',
         'transform'                : 'matrix(' + matrix.join(',') + ')',
         'transform-origin'         : origin.x + 'px ' + origin.y + 'px ',
+      };
+
+      var elm = this._image;
+      Object.keys(styles).forEach(function (key) {
+        elm.style[key] = styles[key];
       });
     },
     _reset: function () {
