@@ -55,31 +55,19 @@ if (typeof(L) !== 'undefined') {
       var matrix = this.options.transform;
       var origin = this.options.transformorigin;
 
-      if (typeof matrix[0] === 'object') {
-          // If matrix is form of [[x,y,z],[o,p,q],[m,n,o]];
-          // concat it to [x,y,z...m,n,n]
-          matrix = Array.concat.call([], matrix);
-      }
       matrix = matrix.map(function (val) {
         return val.toFixed(12);
       });
 
-      var styles = {
-        '-webkit-transform'        : 'matrix(' + matrix.join(',') + ')',
-        '-webkit-transform-origin' : origin.x + 'px ' + origin.y + 'px ',
-        '-moz-transform'           : 'matrix(' + matrix.join(',') + ')',
-        '-moz-transform-origin'    : origin.x + 'px ' + origin.y + 'px ',
-        '-o-transform'             : 'matrix(' + matrix.join(',') + ')',
-        '-o-transform-origin'      : origin.x + 'px ' + origin.y + 'px ',
-        '-ms-transform'            : 'matrix(' + matrix.join(',') + ')',
-        '-ms-transform-origin'     : origin.x + 'px ' + origin.y + 'px ',
-        'transform'                : 'matrix(' + matrix.join(',') + ')',
-        'transform-origin'         : origin.x + 'px ' + origin.y + 'px ',
-      };
+      var strMatrix = 'matrix(' + matrix.join(',') + ')';
+      var orgMatrix = origin.x + 'px ' + origin.y + 'px ';
+
+      var vendorPrefixes = ['', '-webkit-', '-moz-', '-o-', '-ms-'];
 
       var elm = this._image;
-      Object.keys(styles).forEach(function (key) {
-        elm.style[key] = styles[key];
+      vendorPrefixes.forEach(function (vendor) {
+        elm.style[vendor + 'transform'] = strMatrix;
+        elm.style[vendor + 'transformOrigin'] = orgMatrix;
       });
     },
     _reset: function () {
